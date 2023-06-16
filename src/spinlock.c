@@ -22,8 +22,6 @@
 #include "spinlock.h"
 #include <sched.h>
 
-#include <thread>
-
 
 #if defined(__i386__) || defined(__x86_64__)
 #  define SPINLOCK_YIELD __asm__("pause")
