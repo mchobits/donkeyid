@@ -24,9 +24,9 @@
 
 
 #if defined(__i386__) || defined(__x86_64__)
-#  define SPINLOCK_YIELD __asm__("pause")
+#  define SPINLOCK_YIELD __asm("pause")
 #else
-#  define SPINLOCK_YIELD std::this_thread::yield()
+#  define SPINLOCK_YIELD __asm("yield")
 #endif
 
 extern int ncpu;
