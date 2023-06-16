@@ -49,7 +49,7 @@ void spin_lock(atomic_t *lock, int which) {
             for (n = 1; n < 129; n << 1) {
 
                 for (i = 0; i < n; i++) {
-                    __asm("pause");
+                    SPINLOCK_YIELD;
                 }
 
                 if (*lock == 0 &&
