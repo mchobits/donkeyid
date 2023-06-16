@@ -22,6 +22,15 @@
 #include "spinlock.h"
 #include <sched.h>
 
+#include <thread>
+
+
+#if defined(__i386__) || defined(__x86_64__)
+#  define SPINLOCK_YIELD __asm__("pause")
+#else
+#  define SPINLOCK_YIELD std::this_thread::yield()
+#endif
+
 extern int ncpu;
 
 
